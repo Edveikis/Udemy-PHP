@@ -1,5 +1,17 @@
 <?php
 $output = null;
+
+$user = [
+    'name' => 'John Doe',
+    'email' => 'john@example.com',
+    'password' => 'secret',
+    'hobbies' => ['reading', 'coding', 'hiking']
+];
+
+$output = $user['hobbies'][2];
+
+unset($user['password']);
+
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +34,12 @@ $output = null;
         <div class="bg-white rounded-lg shadow-md p-6 mt-6">
             <!-- Output -->
             <p class="text-xl"><?= $output ?></p>
+            <h2 class="text-xl font-semibold my-4">User Information:</h2>
+            <p>
+                <pre>
+                    <?php print_r($user) ?>
+                </pre>
+            </p>
         </div>
     </div>
 </body>
