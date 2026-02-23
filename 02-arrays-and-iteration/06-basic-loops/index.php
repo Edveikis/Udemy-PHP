@@ -1,3 +1,26 @@
+<?php
+
+// for loop
+// for ($i = 0; $i < 5; $i++) {
+//     echo "Iteration: $i<br>";
+// }   
+
+// while loop
+// $i = 0;
+// while ($i < 5) {
+//     echo "Iteration: $i<br>";
+//     $i++;
+// }
+
+// do while loop
+$i = 0;
+do {
+    echo "Iteration: $i<br>";
+    $i++;
+} while ($i < 5);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +40,11 @@
     <div class="container mx-auto p-4 mt-4">
         <div class="bg-white rounded-lg shadow-md p-6 mt-6">
             <!-- Output -->
+             <ul>
+                <?php for ($i = 0; $i < 11; $i++) : ?>
+                    <li class="mb-2">Iteration: <?php echo $i; ?></li>
+                <?php endfor; ?>
+             </ul>
         </div>
     </div>
 </body>
