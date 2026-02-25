@@ -1,6 +1,6 @@
 <?php
 
-// $favColor = 'red';
+// $favColor = 'red'; 
 
 // $color = isset($favColor) ? $favColor : 'blue';
 
