@@ -6,6 +6,12 @@
   The formula to convert Fahrenheit to Celsius is: Celsius = (Fahrenheit - 32) * 5/9
 */
 
+function fahrenheitToCelsius($fahrenheit) {
+  return ($fahrenheit - 32) * 5 / 9;
+}
+
+echo fahrenheitToCelsius(100); 
+
 echo '<br>';
 
 /*
@@ -13,8 +19,15 @@ echo '<br>';
   Create a function called `printNamesToUpperCase` that takes an array of names as an argument. The function should loop through the array and print each name to the screen in uppercase letters.
 */
 
+function printNamesToUpperCase($names) {
+  foreach ($names as $name)
+    {
+      echo strtoupper($name) . '<br>';
+    }
+}
 
-echo '<br>';
+$names = ['Alice', 'Bob', 'Charlie'];
+printNamesToUpperCase($names);
 
 /*
   Challenge 3: Find the longest word
@@ -22,3 +35,19 @@ echo '<br>';
   2. The function should return the longest word in the sentence.
   3. The output should look like this:
 */
+
+function findLongestWord($sentence) {
+  $words = explode(' ', $sentence);
+  $longestWord = '';
+
+  foreach ($words as $word) {
+    if (strlen($word) > strlen($longestWord)) {
+      $longestWord = $word;
+    }
+  }
+
+  return $longestWord;
+}
+
+$sentence = 'The quick brown fox jumped over the lazy dog';
+echo findLongestWord($sentence);
