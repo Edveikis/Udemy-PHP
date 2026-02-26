@@ -4,17 +4,33 @@ $test = function () {
     echo "Hello, World!";
 };
 
-$test();
+// $test();
 
-function someFn() {
-    $tmp = 0;
-    $lamba = function() {
-        $count = 1337;
-        echo "Count: $count\n";
+function createCounter() {
+    $count = 0;
+
+    $counter = function() use (&$count) {
+        return ++$count;
     };
 
-    $lamba();
-    echo 'We done here';
+    return $counter;
 }
 
-someFn();
+$counter = createCounter();
+
+var_dump($counter);
+
+echo "Counter: " . $counter() . '<br/>';
+echo "Counter: " . $counter() . '<br/>';
+
+
+
+function incr(&$var) {
+    return ++$var;
+}
+
+
+$counter2 = 0;
+
+echo "Counter2: " . incr($counter2) . '<br/>';
+echo "Counter2: " . incr($counter2) . '<br/>';
