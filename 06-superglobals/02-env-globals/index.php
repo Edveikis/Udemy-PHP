@@ -1,3 +1,27 @@
+<?php
+
+putenv("DB_HOST=localhost");
+putenv("DB_USER=root");
+
+$host = getenv("DB_HOST");
+$user = getenv("DB_USER");
+
+// var_dump(getenv());
+
+
+$foo = 'Foo Global variable';
+
+function test() {
+  $foo = 'Foo Local variable';
+  echo "Global: " . $GLOBALS['foo'] . "<br>";
+  echo "Local: " . $foo . "<br>";
+}
+
+$foo = 'hello';
+
+test();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,11 +39,11 @@
 
       <div class="bg-gray-200 p-4 rounded-lg">
         <strong class="block mb-2">DB Host:</strong>
-
+        <p><?php echo $host; ?></p>
       </div>
       <div class="bg-gray-200 p-4 rounded-lg">
         <strong class="block mb-2">DB User:</strong>
-
+        <p><?php echo $user; ?></p>
       </div>
 
     </div>
