@@ -7,6 +7,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
   $title = htmlspecialchars($_POST['title'] ?? '');
   $description = htmlspecialchars($_POST['description'] ?? '');
 
+  $file = $_FILES['logo'] ?? null;
+
+  if ($file['error'] === UPLOAD_ERR_OK) {
+    // where files get stored
+    $uploadDir = 'uploads/';
+
+    if (!is_dir($uploadDir)) {
+      mkdir($uploadDir, 0755, true);
+    }
+
+    // new file name that will be used to store the uploaded file
+    $fileName = uniqid() . '-' . $file['name'];
+
+    // allowed file types
+    $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+    // get file extension
+    $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+    if (in_array($fileExtension, $allowedExtensions)) {
+      if (move_uploaded_file($file['tmp_name'], $uploadDir . $fileName)) {
+        echo "File uploaded successfully: " . $fileName;
+      } else {
+        echo "Failed to move uploaded file. " . $file['error'];
+      }
+    } else {
+      echo "Invalid file type. Only JPG, JPEG, PNG, and GIF files are allowed.";
+    }
+  }
+
+
   $submitted = true;
 }
 ?>
