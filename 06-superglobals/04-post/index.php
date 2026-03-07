@@ -1,5 +1,14 @@
 <?php
+  $title = '';
+  $description = '';
+  $submitted = false;
 
+  // check request method, check if it was submitted by checking if submit button was clicked(name=)
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+    $title =  HTMLSPECIALCHARS($_POST['title']) ?? '';
+    $description = HTMLSPECIALCHARS($_POST['description']) ?? '';
+    $submitted = true;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +43,13 @@
       </form>
 
       <!-- Display submitted data -->
+      <?php if ($submitted): ?>
+        <div class="mt-6 p-4 border rounded bg-gray-200">
+          <h2 class="text-lg font-semibold">Submitted Data</h2>
+          <p><strong>Title:</strong> <?= $title; ?></p>
+          <p><strong>Description:</strong> <?= $description; ?></p>
+        </div>
+      <?php endif; ?>
     </div>
   </div>
 </body>
