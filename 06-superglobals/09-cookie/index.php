@@ -1,3 +1,10 @@
+<?php
+
+setcookie("username", "John Doe", time() + 3600, "/");
+setcookie("age", "30", time() + 3600, "/");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
