@@ -1,3 +1,37 @@
+<?php
+require 'database.php';
+
+function addPost($title, $body)
+{
+  global $pdo;
+
+  $stmnt = $pdo->prepare('INSERT INTO posts (title, body) VALUES (:title, :body)');
+  $stmnt->execute([
+    'title' => $title,
+    'body' => $body
+  ]);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+
+  $title = htmlspecialchars($_POST['title']) ?? '';
+  $body = htmlspecialchars($_POST['body']) ?? '';
+
+  if (empty($title) || empty($body)) {
+    echo "Title and body are required.";
+    exit;
+  }
+
+  addPost($title, $body);  
+
+  header('Location: index.php');
+  exit;
+} 
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
