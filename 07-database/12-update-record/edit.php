@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
   $stmnt = $pdo->prepare('SELECT * FROM posts WHERE id = :id');
   $stmnt->execute(['id' => $id]);
   $post = $stmnt->fetch();
-} else if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit']) && $_POST['_method'] === 'put') {
+} else if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit']) && ($_POST['_method'] ?? '') === 'put') {
   $stmnt = $pdo->prepare('UPDATE posts SET title = :title, body = :body WHERE id = :id');
   $stmnt->execute([
     'title' => $_POST['title'] ?? '',
